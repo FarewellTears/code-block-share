@@ -1,0 +1,176 @@
+$body-bg: #A8B4C0;
+$card-bg: #3b404e;
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: SmileySans-Oblique;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $body-bg;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: inherit;
+}
+
+.flex-container {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+
+  .wrapper {
+    margin: auto;
+  }
+
+  h1 {
+    padding: 0;
+    font-size: 36px;
+    color: #ffffff;
+  }
+
+  .card {
+    background-color: $card-bg;
+    width: 650px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.2);
+    padding: 40px 60px;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .form-group {
+    display: flex;
+    font-size: 18px;
+    color: #ffffff;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 10px;
+
+    label {
+      width: 100px;
+      text-align: right;
+    }
+
+    .form-input {
+      flex: 1;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, .2);
+      font-size: 14px;
+      color: #ffffff;
+      font-family: SmileySans-Oblique;
+    }
+
+    .form-input:focus {
+      outline: none;
+    }
+  }
+}
+
+.preview {
+  .target-dom {
+    padding: 30px;
+    background-color: $body-bg;
+  }
+
+  .card {
+    padding: 0;
+    position: relative;
+    min-height: 100px;
+  }
+
+  .mac-head {
+    position: absolute;
+
+    .circle {
+      width: 12px;
+      height: 12px;
+      border-radius: 6px;
+      float: left;
+      margin: 12px 0 0 8px;
+
+    }
+
+    .circle-a {
+      background: #E0443E;
+      margin-left: 10px;
+    }
+
+    .circle-b {
+      background: #DEA123;
+    }
+
+    .circle-c {
+      background: #1AAB29;
+    }
+  }
+
+  .content {
+    padding: 50px 0 30px;
+
+    pre {
+      font-size: 22px;
+      color: #ffffff;
+      font-family: SmileySans-Oblique;
+      margin: auto;
+      text-align: left;
+      width: fit-content;
+      line-height: 30px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #ffffff;
+      font-family: SmileySans-Oblique;
+      text-align: right;
+      margin-right: 60px;
+    }
+  }
+
+}
+
+.btn-group {
+  justify-content: center;
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+
+  button {
+    width: 100px;
+    outline: none;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: SmileySans-Oblique;
+    color: $card-bg;
+    cursor: pointer;
+  }
+}

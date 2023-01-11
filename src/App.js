@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { Preview } from "./Preview";
+import { Form } from "./Form";
+import { useState, useRef } from "react";
 
 function App() {
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
+  const [content, setContent] = useState("");
+  const target = useRef(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+      <Form
+        title={title}
+        author={author}
+        setTitle={setTitle}
+        setAuthor={setAuthor}
+        setContent={setContent}
+        target={target}
+      />
+      <Preview
+        title={title}
+        author={author}
+        content={content}
+        target={target}
+      />
     </div>
   );
 }
