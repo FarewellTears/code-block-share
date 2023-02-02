@@ -4,7 +4,7 @@ import domtoimage from "dom-to-image-more";
 export const Form = (props) => {
   const { title, author, setTitle, setAuthor, setContent, target } = props;
 
-  const DataOut = async (event) => {
+  const DataOut = (event) => {
     event.preventDefault();
 
     const node = target.current;
@@ -14,13 +14,15 @@ export const Form = (props) => {
       width: node?.clientWidth || 0,
       height: node?.clientHeight || 0,
     };
-    const dataUrl = await domtoimage.toPng(node, { ...options });
-
-    // download image
-    const link = document.createElement("a");
-    link.download = `${title}-${author}.png`;
-    link.href = dataUrl;
-    link.click();
+    domtoimage
+      .toPng(node, { ...options })
+      .then((dataUrl) => {
+        const link = document.createElement("a");
+        link.download = `${title}-${author}.png`;
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch((error) => console.error("Oops...Something went wrong!", error));
   };
 
   const DataReset = () => {

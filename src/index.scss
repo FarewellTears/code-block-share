@@ -1,5 +1,6 @@
 $body-bg: #A8B4C0;
 $card-bg: #3b404e;
+$input-bg: rgba(255, 255, 255, .2);
 
 *,
 *:before,
@@ -46,7 +47,7 @@ code {
 
   h1 {
     padding: 0;
-    font-size: 36px;
+    font-size: 42px;
     color: #ffffff;
   }
 
@@ -82,7 +83,7 @@ code {
       padding: 8px 12px;
       border: none;
       border-radius: 10px;
-      background: rgba(255, 255, 255, .2);
+      background: $input-bg;
       font-size: 14px;
       color: #ffffff;
       font-family: SmileySans-Oblique;
@@ -104,6 +105,17 @@ code {
     padding: 0;
     position: relative;
     min-height: 100px;
+  }
+
+  .copy {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    cursor: pointer;
+
+    .icon:hover {
+      fill: #fcb32c;
+    }
   }
 
   .mac-head {
@@ -173,4 +185,14 @@ code {
     color: $card-bg;
     cursor: pointer;
   }
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  fill: #ffffff;
+  overflow: hidden;
+  font-weight: 600;
+  display: block;
+  margin: auto;
 }
