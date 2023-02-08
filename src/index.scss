@@ -95,6 +95,12 @@ code {
   }
 }
 
+.radio-group {
+  .radio-text {
+    background-color: #1AAB29;
+  }
+}
+
 .preview {
   .target-dom {
     padding: 30px;
@@ -146,6 +152,9 @@ code {
 
   .content {
     padding: 50px 0 30px;
+    width: 600px;
+    display: flex;
+    margin: auto;
 
     pre {
       font-size: 22px;

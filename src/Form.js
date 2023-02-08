@@ -2,7 +2,20 @@ import React from "react";
 import domtoimage from "dom-to-image-more";
 
 export const Form = (props) => {
-  const { title, author, setTitle, setAuthor, setContent, target } = props;
+  const {
+    title,
+    author,
+    type,
+    setTitle,
+    setAuthor,
+    setContent,
+    setType,
+    target,
+  } = props;
+
+  const getDateString = () => {
+    return new Date().toLocaleString();
+  }
 
   const DataOut = (event) => {
     event.preventDefault();
@@ -18,7 +31,11 @@ export const Form = (props) => {
       .toPng(node, { ...options })
       .then((dataUrl) => {
         const link = document.createElement("a");
-        link.download = `${title}-${author}.png`;
+        let contentText;
+        if (author.length | title.length)
+          contentText = `${title}-${author}.png`;
+        else contentText = `${getDateString()}.png`;
+        link.download = contentText;
         link.href = dataUrl;
         link.click();
       })
@@ -29,6 +46,7 @@ export const Form = (props) => {
     setTitle("");
     setAuthor("");
     setContent("");
+    setType("text");
   };
 
   return (
@@ -52,6 +70,9 @@ export const Form = (props) => {
                 onChange={(e) => {
                   setTitle(e.target.value);
                 }}
+                onInput={(e) => {
+                  setTitle(e.target.value);
+                }}
               />
             </div>
             <div className='form-group'>
@@ -62,6 +83,9 @@ export const Form = (props) => {
                 name='author'
                 placeholder='请输入作者'
                 onChange={(e) => {
+                  setAuthor(e.target.value);
+                }}
+                onInput={(e) => {
                   setAuthor(e.target.value);
                 }}
               />
@@ -77,11 +101,38 @@ export const Form = (props) => {
                 onChange={(e) => {
                   setContent(e.target.value);
                 }}
+                onInput={(e) => {
+                  setContent(e.target.value);
+                }}
               />
             </div>
             <div className='form-group'>
               <label />
               <div className='btn-group'>
+                <div>
+                  <input
+                    type='radio'
+                    id='radioText'
+                    name='text'
+                    value='text'
+                    checked={type === "text"}
+                    onChange={() => {
+                      if (type !== "text") setType("text");
+                    }}
+                  />
+                  <label htmlFor='radioText'>古诗文</label>
+                  <input
+                    type='radio'
+                    id='radioCode'
+                    name='code'
+                    value='code'
+                    checked={type === "code"}
+                    onChange={() => {
+                      if (type !== "code") setType("code");
+                    }}
+                  />
+                  <label htmlFor='radioCode'>代码</label>
+                </div>
                 <button type='reset'>重置</button>
                 <button type='submit'>导出</button>
               </div>

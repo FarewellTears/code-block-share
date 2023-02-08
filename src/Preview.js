@@ -1,14 +1,27 @@
 import React from "react";
+// import SyntaxHighlighter from "react-syntax-highlighter";
+// import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+
+// const HighLighter = ({ language, children }) => {
+//   return (
+//     <SyntaxHighlighter language={language} style={oneDark} wrapLines={true}>
+//       {children}
+//     </SyntaxHighlighter>
+//   );
+// };
+import HighLighter from "./HighLighter";
 
 export const Preview = (props) => {
-  const { title, author, content, target } = props;
+  const { title, author, content, type, target } = props;
 
   const copyContent = () => {
     const theClipboard = navigator.clipboard;
+    const contentText = type === "text" && (author.length | title.length) ? `${content}\n———— ${author} ${title}` : `${content}`
+
     theClipboard
-      .writeText(`${content}\n———— ${author} ${title}`)
+      .writeText(contentText)
       .then(() => console.log("Copy content successfully!"))
-      .catch((error) => console.error("Oops...Copy content failed!", error));;
+      .catch((error) => console.error("Oops...Copy content failed!", error));
   };
 
   return (
@@ -33,8 +46,12 @@ export const Preview = (props) => {
               </div>
             ) : null}
             <div className='content'>
-              <pre>{content}</pre>
-              {author.length | title.length ? (
+              {type === "text" ? (
+                <pre>{content}</pre>
+              ) : (
+                <HighLighter language='cpp'>{content}</HighLighter>
+              )}
+              {type === "text" && (author.length | title.length) ? (
                 <p>
                   ———— {author} {title}
                 </p>
