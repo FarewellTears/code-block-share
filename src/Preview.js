@@ -45,7 +45,7 @@ export const Preview = (props) => {
                 </svg>
               </div>
             ) : null}
-            <div className='content'>
+            <div className={`content ${type}`}>
               {type === "text" ? (
                 <pre>{content}</pre>
               ) : (
